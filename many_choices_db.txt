@@ -1,34 +1,61 @@
 PLATFORM_CHOICE = [
-    ("DISNEY_PLUS", "Disney+"),
-    ("NETFLIX", "Netflix"),
-    ("MOVISTAR_PLUS", "Movistar+"),
-    ("PRIME_VIDEO", "Prime Video"),
-    ("YOUTUBE", "YouTube"),
-    ("HBO_MAX", "HBO Max"),
-    ("FILMIN", "Filmin"),
-]
-
-LANGUAGE_CHOICES = [
-    ('VOSE', 'VOSE'),
-    ('VE', 'VE')
+    (Disney+, #182CDB),
+    (Netflix, #D80202),
+    (Movistar+, #22C6F1),
+    (Prime Video, #E48630),
+    (YouTube, #AB1A1A),
+    (HBO Max, #9E5AD4),
+    (none, #6C7578),
+    (3Cat, #F11B52),
+    (Filmin, #00FFA1),
 ]
 
 COUNTRY_CHOICE = [
-    ("US", "United States"),
-    ("ESP", "Spain"),
-    ("UK", "United Kingdom"),
-    ("JAP", "Japan"),
-    ("KO", "Korea"),
-    ("CAT", "Catalonia"),
-    ("IRE", "Ireland"),
+    (United States, media/country-flags/united-states.png),
+    (Spain, media/country-flags/spain.png),
+    (United Kingdom, media/country-flags/united-kingdom.png),
+    (Japan, media/country-flags/japan.png),
+    (Korea, media/country-flags/korea.png),
+    (Catalonia, media/country-flags/catalonia.png),
+    (Ireland, media/country-flags/ireland.png),
+    (Chile, media/country-flags/chile.png),
+    (Italy, media/country-flags/italy.png),
+    (Sweden, media/country-flags/sweden.png),
+    (Norway, media/country-flags/norway.png),
+    (Greece, media/country-flags/greece.png),
+    (France, media/country-flags/france.png),
+    (Denmark, media/country-flags/denmark.png),
+]
+
+GENRE_CHOICES = [
+    (Sci-Fi),
+    (Action),
+    (Adventure),
+    (Drama),
+    (True Story),
+    (Music),
+    (Thriller),
+    (Comedy),
+    (Live),
+    (Animation),
+    (Fantasy),
+    (Anime),
+    (Game-Show),
+    (Musical),
+    (Horror),
+    (War),
+]
+
+LANGUAGE_CHOICES = [
+    (VOSE),
+    (VE),
 ]
 
 TYPE_CHOICE = [
-    ("SAGA", "SAGA"),
-    ("MOVIE", "PELÍCULA"),
-    ("DOCU-SERIES", "DOCU-SERIE"),
-    ("EVENT", "EVENTO"),
-    ("TV_SHOW", "SERIE"),
-    ("TV_PROGRAM", "PROGRAMA"),
-    ("DOCUMENTARY", "DOCUMENTAL"),
+    (Film),
+    (Series),
+    (Documentary),
+    (Program),
+    (Event),
+    (Play),
 ]
