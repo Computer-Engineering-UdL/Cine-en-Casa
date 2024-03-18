@@ -1,28 +1,54 @@
 PLATFORM_CHOICE = [
     (Disney+, #182CDB),
-    (Prime Video, #E48630),
-    (Movistar+, #22C6F1),
-    (YouTube, #AB1A1A),
     (Netflix, #D80202),
+    (Movistar+, #22C6F1),
+    (Prime Video, #E48630),
+    (YouTube, #AB1A1A),
     (HBO Max, #9E5AD4),
-    (Filmin, #00FFA1),
+    (none, #6C7578),
     (3Cat, #F11B52),
-    (none, #6C7578)
+    (Filmin, #00FFA1),
+]
+
+COUNTRY_CHOICE = [
+    (United States, media/country-flags/united-states.png),
+    (Spain, media/country-flags/spain.png),
+    (United Kingdom, media/country-flags/united-kingdom.png),
+    (Japan, media/country-flags/japan.png),
+    (Korea, media/country-flags/korea.png),
+    (Catalonia, media/country-flags/catalonia.png),
+    (Ireland, media/country-flags/ireland.png),
+    (Chile, media/country-flags/chile.png),
+    (Italy, media/country-flags/italy.png),
+    (Sweden, media/country-flags/sweden.png),
+    (Norway, media/country-flags/norway.png),
+    (Greece, media/country-flags/greece.png),
+    (France, media/country-flags/france.png),
+    (Denmark, media/country-flags/denmark.png),
+]
+
+GENRE_CHOICES = [
+    (Sci-Fi),
+    (Action),
+    (Adventure),
+    (Drama),
+    (True Story),
+    (Music),
+    (Thriller),
+    (Comedy),
+    (Live),
+    (Animation),
+    (Fantasy),
+    (Anime),
+    (Game-Show),
+    (Musical),
+    (Horror),
+    (War),
 ]
 
 LANGUAGE_CHOICES = [
     ('VOSE', 'VOSE'),
     ('VE', 'VE')
-]
-
-COUNTRY_CHOICE = [
-    ("US", "United States"),
-    ("ESP", "Spain"),
-    ("UK", "United Kingdom"),
-    ("JAP", "Japan"),
-    ("KO", "Korea"),
-    ("CAT", "Catalonia"),
-    ("IRE", "Ireland"),
 ]
 
 TYPE_CHOICE = [

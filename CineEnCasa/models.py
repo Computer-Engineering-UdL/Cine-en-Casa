@@ -4,6 +4,11 @@ from django.contrib.auth.models import User
 
 # SUPERUSER: admin | admin@admin.com | 1234
 
+# Revert all migrations:
+# python manage.py migrate CineEnCasa zero
+# python manage.py makemigrations CineEnCasa
+# python manage.py migrate CineEnCasa
+
 # Choices
 LANGUAGE_CHOICES = [
     ('VOSE', 'VOSE'),
@@ -25,6 +30,16 @@ MONTH_CHOICE = [
     ("DEC", "Diciembre")
 ]
 
+TYPE_CHOICE = [
+    ("SAGA", "SAGA"),
+    ("MOVIE", "PELÍCULA"),
+    ("DOCU-SERIES", "DOCU-SERIE"),
+    ("EVENT", "EVENTO"),
+    ("TV_SHOW", "SERIE"),
+    ("TV_PROGRAM", "PROGRAMA"),
+    ("DOCUMENTARY", "DOCUMENTAL"),
+]
+
 
 class Platform(models.Model):
     name = models.CharField(max_length=20, unique=True)
@@ -42,15 +57,11 @@ class Country(models.Model):
         return self.name
 
 
-TYPE_CHOICE = [
-    ("SAGA", "SAGA"),
-    ("MOVIE", "PELÍCULA"),
-    ("DOCU-SERIES", "DOCU-SERIE"),
-    ("EVENT", "EVENTO"),
-    ("TV_SHOW", "SERIE"),
-    ("TV_PROGRAM", "PROGRAMA"),
-    ("DOCUMENTARY", "DOCUMENTAL"),
-]
+class Genre(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Film(models.Model):
@@ -59,7 +70,7 @@ class Film(models.Model):
     release_year = models.PositiveIntegerField()
     duration = models.TimeField()
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    # genres = ArrayField(models.CharField(max_length=50, blank=True), max_size=4)
+    genre = models.ManyToManyField(Genre)
     synopsis = models.TextField()
     poster = models.ImageField()
 
@@ -67,7 +78,7 @@ class Film(models.Model):
     type = models.CharField(choices=TYPE_CHOICE, max_length=15)
     # language_versions = models.ManyToManyField(LANGUAGE_CHOICES, maxlength=5, blank=True)
     platform = models.ManyToManyField(Platform)
-    is_saga = models.BooleanField()  # Saga equals series/tv shows (episodes), sagas (movies)
+    is_saga = models.BooleanField()  # Saga equals series/tv shows (episodes), sagas (movies), tv program (gala)
 
     # If is_saga:
     total_films = models.PositiveIntegerField(default='3')
