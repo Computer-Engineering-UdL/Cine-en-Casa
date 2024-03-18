@@ -64,6 +64,13 @@ class Genre(models.Model):
         return self.name
 
 
+class LanguageVersion(models.Model):
+    name = models.CharField(max_length=4, unique=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Film(models.Model):
     # Movie info
     title = models.CharField(max_length=100)
@@ -76,7 +83,7 @@ class Film(models.Model):
 
     # Extra info
     type = models.CharField(choices=TYPE_CHOICE, max_length=15)
-    # language_versions = models.ManyToManyField(LANGUAGE_CHOICES, maxlength=5, blank=True)
+    language_version = models.ManyToManyField(LanguageVersion)
     platform = models.ForeignKey(Platform, on_delete=models.CASCADE)
     is_saga = models.BooleanField()  # Saga equals series/tv shows (episodes), sagas (movies), tv program (gala)
 

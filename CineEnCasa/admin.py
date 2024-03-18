@@ -1,5 +1,5 @@
 from django.contrib import admin
-from CineEnCasa.models import Film, Platform, Country, Genre
+from CineEnCasa.models import Film, Platform, Country, Genre, LanguageVersion
 
 
 # Register your models here.
@@ -13,3 +13,4 @@ admin.site.register(Film, FilmAdmin)
 admin.site.register(Platform)
 admin.site.register(Country)
 admin.site.register(Genre)
+admin.site.register(LanguageVersion)

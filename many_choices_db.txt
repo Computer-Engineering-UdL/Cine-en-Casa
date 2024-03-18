@@ -47,8 +47,8 @@ GENRE_CHOICES = [
 ]
 
 LANGUAGE_CHOICES = [
-    ('VOSE', 'VOSE'),
-    ('VE', 'VE')
+    (VOSE),
+    (VE),
 ]
 
 TYPE_CHOICE = [
