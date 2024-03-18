@@ -11,18 +11,9 @@ from django.contrib.auth.models import User
 
 # Choices
 MONTH_CHOICE = [
-    ("JAN", "Enero"),
-    ("FEB", "Febrero"),
-    ("MAR", "Marzo"),
-    ("APR", "Abril"),
-    ("MAY", "Mayo"),
-    ("JUN", "Junio"),
-    ("JUL", "Julio"),
-    ("AUG", "Agosto"),
-    ("SEP", "Septiembre"),
-    ("OCT", "Octubre"),
-    ("NOV", "Noviembre"),
-    ("DEC", "Diciembre")
+    ("JAN", "January"), ("FEB", "February"), ("MAR", "March"), ("APR", "April"), ("MAY", "May"), ("JUN", "June"),
+    ("JUL", "July"), ("AUG", "August"), ("SEP", "September"), ("OCT", "October"), ("NOV", "November"),
+    ("DEC", "December")
 ]
 
 
@@ -63,26 +54,31 @@ class FilmType(models.Model):
         return self.name
 
 
+class Saga(models.Model):
+    name = models.CharField(max_length=100, unique=True, blank=True)
+    total_films = models.PositiveIntegerField(default=2)
+
+    def __str__(self):
+        return self.name
+
+
 class Film(models.Model):
     # Movie info
     title = models.CharField(max_length=100)
     release_year = models.PositiveIntegerField()
-    duration = models.TimeField()
+    duration = models.DurationField()  # HH:MM -> forms.py
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     genre = models.ManyToManyField(Genre)
     synopsis = models.TextField()
-    poster = models.ImageField()
+    poster = models.ImageField(upload_to="media/film-posters", default="media/film-posters/default.png")
 
     # Extra info
     type = models.ForeignKey(FilmType, on_delete=models.CASCADE)
     language_version = models.ManyToManyField(LanguageVersion)
     platform = models.ForeignKey(Platform, on_delete=models.CASCADE)
-    is_saga = models.BooleanField()  # Saga equals series/tv shows (episodes), sagas (movies), tv program (gala)
-
-    # If is_saga:
-    total_films = models.PositiveIntegerField(default='3')
-    current_film = models.PositiveIntegerField(default='1')
-    saga_type = models.CharField(max_length=4)
+    # Saga equals series/tv shows (episodes), sagas (movies), tv program (gala)
+    saga = models.ForeignKey(Saga, on_delete=models.SET_NULL, null=True, blank=True)
+    current_saga_film = models.PositiveIntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.title
