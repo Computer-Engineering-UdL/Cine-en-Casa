@@ -1,0 +1,34 @@
+PLATFORM_CHOICE = [
+    ("DISNEY_PLUS", "Disney+"),
+    ("NETFLIX", "Netflix"),
+    ("MOVISTAR_PLUS", "Movistar+"),
+    ("PRIME_VIDEO", "Prime Video"),
+    ("YOUTUBE", "YouTube"),
+    ("HBO_MAX", "HBO Max"),
+    ("FILMIN", "Filmin"),
+]
+
+LANGUAGE_CHOICES = [
+    ('VOSE', 'VOSE'),
+    ('VE', 'VE')
+]
+
+COUNTRY_CHOICE = [
+    ("US", "United States"),
+    ("ESP", "Spain"),
+    ("UK", "United Kingdom"),
+    ("JAP", "Japan"),
+    ("KO", "Korea"),
+    ("CAT", "Catalonia"),
+    ("IRE", "Ireland"),
+]
+
+TYPE_CHOICE = [
+    ("SAGA", "SAGA"),
+    ("MOVIE", "PELÍCULA"),
+    ("DOCU-SERIES", "DOCU-SERIE"),
+    ("EVENT", "EVENTO"),
+    ("TV_SHOW", "SERIE"),
+    ("TV_PROGRAM", "PROGRAMA"),
+    ("DOCUMENTARY", "DOCUMENTAL"),
+]

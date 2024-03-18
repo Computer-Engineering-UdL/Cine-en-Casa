@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head> <!-- Required meta tags (the head element won't render) -->
+    <meta charset="UTF-8"> <!-- codification (do avoid problems with special characters) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsive design -->
+
+    <title>Film Detail</title>
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="Film Review Site"> <!-- the title that will appear in the social media -->
+    <meta property="og:type" content="website"> <!-- the type of the content -->
+
+    <meta name="robots" content="index, follow"> <!-- search engine optimization -->
+    <meta name="description" content="Film Review Site"> <!-- the Google description in almost all cases -->
+</head>
+<body>
+    <h1>{{ film.title }}</h1>
+    <p>Release Year: {{ film.release_year }}</p>
+    <p>Genres: {{ film.genres }}</p>
+    <p>Synopsis: {{ film.synopsis }}</p>
+    <p><a href="{% url 'home' %}">Back to Home</a></p>
+</body>
+</html>
