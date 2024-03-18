@@ -27,7 +27,7 @@ class Platform(models.Model):
 
 class Country(models.Model):
     name = models.CharField(max_length=30, unique=True)
-    flag = models.ImageField(upload_to="media/country-flags", default="media/country-flags/default.png")
+    flag = models.ImageField(upload_to="media/country-flags", default="media/country-flags/default-flag.png")
 
     def __str__(self):
         return self.name
@@ -70,12 +70,13 @@ class Film(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     genre = models.ManyToManyField(Genre)
     synopsis = models.TextField()
-    poster = models.ImageField(upload_to="media/film-posters", default="media/film-posters/default.png")
+    poster = models.ImageField(upload_to="media/film-posters", default="media/film-posters/default-film.png")
 
     # Extra info
     type = models.ForeignKey(FilmType, on_delete=models.CASCADE)
     language_version = models.ManyToManyField(LanguageVersion)
     platform = models.ForeignKey(Platform, on_delete=models.CASCADE)
+
     # Saga equals series/tv shows (episodes), sagas (movies), tv program (gala)
     saga = models.ForeignKey(Saga, on_delete=models.SET_NULL, null=True, blank=True)
     current_saga_film = models.PositiveIntegerField(null=True, blank=True)
@@ -93,7 +94,7 @@ class BillboardFilm(models.Model):
     film = models.ForeignKey(Film, on_delete=models.CASCADE)
 
     # Date info
-    hour = models.TimeField(default='20:00')
+    hour = models.TimeField()
     day = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(31)])
     month = models.CharField(choices=MONTH_CHOICE, max_length=10)
 

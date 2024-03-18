@@ -52,11 +52,10 @@ LANGUAGE_CHOICES = [
 ]
 
 TYPE_CHOICE = [
-    ("SAGA", "SAGA"),
-    ("MOVIE", "PELÍCULA"),
-    ("DOCU-SERIES", "DOCU-SERIE"),
-    ("EVENT", "EVENTO"),
-    ("TV_SHOW", "SERIE"),
-    ("TV_PROGRAM", "PROGRAMA"),
-    ("DOCUMENTARY", "DOCUMENTAL"),
+    (Film),
+    (Series),
+    (Documentary),
+    (Program),
+    (Event),
+    (Play),
 ]
