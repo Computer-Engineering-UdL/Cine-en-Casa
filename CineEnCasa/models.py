@@ -77,7 +77,7 @@ class Film(models.Model):
     # Extra info
     type = models.CharField(choices=TYPE_CHOICE, max_length=15)
     # language_versions = models.ManyToManyField(LANGUAGE_CHOICES, maxlength=5, blank=True)
-    platform = models.ManyToManyField(Platform)
+    platform = models.ForeignKey(Platform, on_delete=models.CASCADE)
     is_saga = models.BooleanField()  # Saga equals series/tv shows (episodes), sagas (movies), tv program (gala)
 
     # If is_saga:
