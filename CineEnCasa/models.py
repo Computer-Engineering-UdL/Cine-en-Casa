@@ -4,78 +4,82 @@ from django.contrib.auth.models import User
 
 # SUPERUSER: admin | admin@admin.com | 1234
 
+# Revert all migrations:
+# python manage.py migrate CineEnCasa zero
+# python manage.py makemigrations CineEnCasa
+# python manage.py migrate CineEnCasa
+
 # Choices
-LANGUAGE_CHOICES = [
-    ('VOSE', 'VOSE'),
-    ('VE', 'VE')
-]
-
 MONTH_CHOICE = [
-    ("JAN", "Enero"),
-    ("FEB", "Febrero"),
-    ("MAR", "Marzo"),
-    ("APR", "Abril"),
-    ("MAY", "Mayo"),
-    ("JUN", "Junio"),
-    ("JUL", "Julio"),
-    ("AUG", "Agosto"),
-    ("SEP", "Septiembre"),
-    ("OCT", "Octubre"),
-    ("NOV", "Noviembre"),
-    ("DEC", "Diciembre")
+    ("JAN", "January"), ("FEB", "February"), ("MAR", "March"), ("APR", "April"), ("MAY", "May"), ("JUN", "June"),
+    ("JUL", "July"), ("AUG", "August"), ("SEP", "September"), ("OCT", "October"), ("NOV", "November"),
+    ("DEC", "December")
 ]
 
-COUNTRY_CHOICE = [
-    ("US", "United States"),
-    ("ESP", "Spain"),
-    ("UK", "United Kingdom"),
-    ("JAP", "Japan"),
-    ("KO", "Korea"),
-    ("CAT", "Catalonia"),
-    ("IRE", "Ireland"),
-]
 
-PLATFORM_CHOICE = [
-    ("DISNEY_PLUS", "Disney+"),
-    ("NETFLIX", "Netflix"),
-    ("MOVISTAR_PLUS", "Movistar+"),
-    ("PRIME_VIDEO", "Prime Video"),
-    ("YOUTUBE", "YouTube"),
-    ("HBO_MAX", "HBO Max"),
-    ("FILMIN", "Filmin"),
-]
+class Platform(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+    color = models.CharField(max_length=7, default="#000000")
 
-TYPE_CHOICE = [
-    ("SAGA", "SAGA"),
-    ("MOVIE", "PELÍCULA"),
-    ("DOCU-SERIES", "DOCU-SERIE"),
-    ("EVENT", "EVENTO"),
-    ("TV_SHOW", "SERIE"),
-    ("TV_PROGRAM", "PROGRAMA"),
-    ("DOCUMENTARY", "DOCUMENTAL"),
-]
+    def __str__(self):
+        return self.name
+
+
+class Country(models.Model):
+    name = models.CharField(max_length=30, unique=True)
+    flag = models.ImageField(upload_to="media/country-flags", default="media/country-flags/default-flag.png")
+
+    def __str__(self):
+        return self.name
+
+
+class Genre(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class LanguageVersion(models.Model):
+    name = models.CharField(max_length=4, unique=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class FilmType(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Saga(models.Model):
+    name = models.CharField(max_length=100, unique=True, blank=True)
+    total_films = models.PositiveIntegerField(default=2)
+
+    def __str__(self):
+        return self.name
 
 
 class Film(models.Model):
     # Movie info
     title = models.CharField(max_length=100)
     release_year = models.PositiveIntegerField()
-    duration = models.TimeField()
-    country = models.CharField(choices=COUNTRY_CHOICE, max_length=20)
-    #genres = ArrayField(models.CharField(max_length=50, blank=True), max_size=4)
+    duration = models.DurationField()  # HH:MM -> forms.py
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    genre = models.ManyToManyField(Genre)
     synopsis = models.TextField()
-    poster = models.ImageField()
+    poster = models.ImageField(upload_to="media/film-posters", default="media/film-posters/default-film.png")
 
     # Extra info
-    type = models.CharField(choices=TYPE_CHOICE, max_length=15)
-    #language_versions = models.ManyToManyField(LANGUAGE_CHOICES, maxlength=5, blank=True)
-    platform = models.CharField(choices=PLATFORM_CHOICE, max_length=15)
-    is_saga = models.BooleanField()  # Saga equals series/tv shows (episodes), sagas (movies)
+    type = models.ForeignKey(FilmType, on_delete=models.CASCADE)
+    language_version = models.ManyToManyField(LanguageVersion)
+    platform = models.ForeignKey(Platform, on_delete=models.CASCADE)
 
-    # If is_saga:
-    total_films = models.PositiveIntegerField(default='3')
-    current_film = models.PositiveIntegerField(default='1')
-    saga_type = models.CharField(max_length=4)
+    # Saga equals series/tv shows (episodes), sagas (movies), tv program (gala)
+    saga = models.ForeignKey(Saga, on_delete=models.SET_NULL, null=True, blank=True)
+    current_saga_film = models.PositiveIntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -90,9 +94,10 @@ class BillboardFilm(models.Model):
     film = models.ForeignKey(Film, on_delete=models.CASCADE)
 
     # Date info
-    hour = models.TimeField(default='20:00')
+    hour = models.TimeField()
     day = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(31)])
     month = models.CharField(choices=MONTH_CHOICE, max_length=10)
+
 
 class Review(models.Model):
     film = models.ForeignKey(Film, on_delete=models.CASCADE)
