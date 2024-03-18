@@ -10,11 +10,6 @@ from django.contrib.auth.models import User
 # python manage.py migrate CineEnCasa
 
 # Choices
-LANGUAGE_CHOICES = [
-    ('VOSE', 'VOSE'),
-    ('VE', 'VE')
-]
-
 MONTH_CHOICE = [
     ("JAN", "Enero"),
     ("FEB", "Febrero"),
@@ -28,16 +23,6 @@ MONTH_CHOICE = [
     ("OCT", "Octubre"),
     ("NOV", "Noviembre"),
     ("DEC", "Diciembre")
-]
-
-TYPE_CHOICE = [
-    ("SAGA", "SAGA"),
-    ("MOVIE", "PELÍCULA"),
-    ("DOCU-SERIES", "DOCU-SERIE"),
-    ("EVENT", "EVENTO"),
-    ("TV_SHOW", "SERIE"),
-    ("TV_PROGRAM", "PROGRAMA"),
-    ("DOCUMENTARY", "DOCUMENTAL"),
 ]
 
 
@@ -71,6 +56,13 @@ class LanguageVersion(models.Model):
         return self.name
 
 
+class FilmType(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Film(models.Model):
     # Movie info
     title = models.CharField(max_length=100)
@@ -82,7 +74,7 @@ class Film(models.Model):
     poster = models.ImageField()
 
     # Extra info
-    type = models.CharField(choices=TYPE_CHOICE, max_length=15)
+    type = models.ForeignKey(FilmType, on_delete=models.CASCADE)
     language_version = models.ManyToManyField(LanguageVersion)
     platform = models.ForeignKey(Platform, on_delete=models.CASCADE)
     is_saga = models.BooleanField()  # Saga equals series/tv shows (episodes), sagas (movies), tv program (gala)
