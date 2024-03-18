@@ -25,20 +25,18 @@ MONTH_CHOICE = [
     ("DEC", "Diciembre")
 ]
 
-COUNTRY_CHOICE = [
-    ("US", "United States"),
-    ("ESP", "Spain"),
-    ("UK", "United Kingdom"),
-    ("JAP", "Japan"),
-    ("KO", "Korea"),
-    ("CAT", "Catalonia"),
-    ("IRE", "Ireland"),
-]
-
 
 class Platform(models.Model):
     name = models.CharField(max_length=20, unique=True)
     color = models.CharField(max_length=7, default="#000000")
+
+    def __str__(self):
+        return self.name
+
+
+class Country(models.Model):
+    name = models.CharField(max_length=30, unique=True)
+    flag = models.ImageField(upload_to="media/country-flags", default="media/country-flags/default.png")
 
     def __str__(self):
         return self.name
@@ -60,7 +58,7 @@ class Film(models.Model):
     title = models.CharField(max_length=100)
     release_year = models.PositiveIntegerField()
     duration = models.TimeField()
-    country = models.CharField(choices=COUNTRY_CHOICE, max_length=20)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
     # genres = ArrayField(models.CharField(max_length=50, blank=True), max_size=4)
     synopsis = models.TextField()
     poster = models.ImageField()

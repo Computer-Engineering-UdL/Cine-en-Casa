@@ -1,11 +1,13 @@
 PLATFORM_CHOICE = [
-    ("DISNEY_PLUS", "Disney+"),
-    ("NETFLIX", "Netflix"),
-    ("MOVISTAR_PLUS", "Movistar+"),
-    ("PRIME_VIDEO", "Prime Video"),
-    ("YOUTUBE", "YouTube"),
-    ("HBO_MAX", "HBO Max"),
-    ("FILMIN", "Filmin"),
+    (Disney+, #182CDB),
+    (Prime Video, #E48630),
+    (Movistar+, #22C6F1),
+    (YouTube, #AB1A1A),
+    (Netflix, #D80202),
+    (HBO Max, #9E5AD4),
+    (Filmin, #00FFA1),
+    (3Cat, #F11B52),
+    (none, #6C7578)
 ]
 
 LANGUAGE_CHOICES = [
