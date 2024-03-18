@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Film
+from CineEnCasa.models import Film, Platform
 
 
 # Register your models here.
@@ -10,3 +10,4 @@ class FilmAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Film, FilmAdmin)
+admin.site.register(Platform)

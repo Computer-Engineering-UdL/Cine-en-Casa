@@ -35,15 +35,13 @@ COUNTRY_CHOICE = [
     ("IRE", "Ireland"),
 ]
 
-PLATFORM_CHOICE = [
-    ("DISNEY_PLUS", "Disney+"),
-    ("NETFLIX", "Netflix"),
-    ("MOVISTAR_PLUS", "Movistar+"),
-    ("PRIME_VIDEO", "Prime Video"),
-    ("YOUTUBE", "YouTube"),
-    ("HBO_MAX", "HBO Max"),
-    ("FILMIN", "Filmin"),
-]
+
+class Platform(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+
+    def __str__(self):
+        return self.name
+
 
 TYPE_CHOICE = [
     ("SAGA", "SAGA"),
@@ -62,14 +60,14 @@ class Film(models.Model):
     release_year = models.PositiveIntegerField()
     duration = models.TimeField()
     country = models.CharField(choices=COUNTRY_CHOICE, max_length=20)
-    #genres = ArrayField(models.CharField(max_length=50, blank=True), max_size=4)
+    # genres = ArrayField(models.CharField(max_length=50, blank=True), max_size=4)
     synopsis = models.TextField()
     poster = models.ImageField()
 
     # Extra info
     type = models.CharField(choices=TYPE_CHOICE, max_length=15)
-    #language_versions = models.ManyToManyField(LANGUAGE_CHOICES, maxlength=5, blank=True)
-    platform = models.CharField(choices=PLATFORM_CHOICE, max_length=15)
+    # language_versions = models.ManyToManyField(LANGUAGE_CHOICES, maxlength=5, blank=True)
+    platform = models.ManyToManyField(Platform)
     is_saga = models.BooleanField()  # Saga equals series/tv shows (episodes), sagas (movies)
 
     # If is_saga:
@@ -93,6 +91,7 @@ class BillboardFilm(models.Model):
     hour = models.TimeField(default='20:00')
     day = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(31)])
     month = models.CharField(choices=MONTH_CHOICE, max_length=10)
+
 
 class Review(models.Model):
     film = models.ForeignKey(Film, on_delete=models.CASCADE)
