@@ -25,7 +25,7 @@ GENRE_CHOICES = [
     (Game-Show),(Musical),(Horror),(War),
 ]
 
-LANGUAGE_CHOICES = [
+LANGUAGE_VERSIONS_CHOICES = [
     (VOSE),(VE),
 ]
 

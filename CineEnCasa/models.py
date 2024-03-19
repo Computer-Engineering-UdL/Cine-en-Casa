@@ -41,7 +41,7 @@ class Genre(models.Model):
 
 
 class LanguageVersion(models.Model):
-    name = models.CharField(max_length=4, unique=True, blank=True)
+    name = models.CharField(max_length=4, unique=True)
 
     def __str__(self):
         return self.name
