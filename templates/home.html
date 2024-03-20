@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsive design -->
 
     <title>Home Page</title>
+    <style>
+        /* Estilo para las imágenes */
+        img {
+            width: 200px; /* Cambia el tamaño según tus preferencias */
+            height: auto; /* Para mantener la proporción de aspecto */
+        }
+    </style>
 
     <!-- OPEN GRAPH -->
     <meta property="og:title" content="Film Review Site"> <!-- the title that will appear in the social media -->
@@ -17,9 +24,8 @@
     <h1>Welcome to Cine En Casa!</h1>
     <p><a href="{% url 'add_film' %}">Add a new Film</a></p>
     {% for film in films %}
-        <h2>{{ film.title }}</h2>
-        <p>Release Year: {{ film.release_year }}</p>
-        <p><a href="{% url 'film_detail' film.title %}">View Details</a></p>
+        <h2><a href="{% url 'film_detail' film.title %}">{{ film.title }}</a></h2>
+        <p><a href="{% url 'film_detail' film.title %}"><img src="{{ film.poster.url }}" alt="Poster de {{ film.title }}"></a></p>
     {% empty %}
         <p>No existent films.</p>
     {% endfor %}

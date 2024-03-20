@@ -41,7 +41,7 @@ class Genre(models.Model):
 
 
 class LanguageVersion(models.Model):
-    name = models.CharField(max_length=4, unique=True, blank=True)
+    name = models.CharField(max_length=4, unique=True)
 
     def __str__(self):
         return self.name
@@ -73,34 +73,44 @@ class Film(models.Model):
     poster = models.ImageField(upload_to="media/film-posters", default="media/film-posters/default-film.png")
 
     # Extra info
-    type = models.ForeignKey(FilmType, on_delete=models.CASCADE)
+    type = models.ManyToManyField(FilmType)
     language_version = models.ManyToManyField(LanguageVersion)
     platform = models.ForeignKey(Platform, on_delete=models.CASCADE)
 
     # Saga equals series/tv shows (episodes), sagas (movies), tv program (gala)
     saga = models.ForeignKey(Saga, on_delete=models.SET_NULL, null=True, blank=True)
-    current_saga_film = models.PositiveIntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.title
-
-
-class Billboard(models.Model):
-    week = models.AutoField(primary_key=True)
-    films = models.ManyToManyField(Film, blank=True)
 
 
 class BillboardFilm(models.Model):
     film = models.ForeignKey(Film, on_delete=models.CASCADE)
 
     # Date info
-    hour = models.TimeField()
-    day = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(31)])
-    month = models.CharField(choices=MONTH_CHOICE, max_length=10)
+    datetime = models.DateTimeField()
+
+    # Saga info
+    current_saga_film = models.PositiveIntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.film.title
+
+
+class Billboard(models.Model):
+    week = models.AutoField(primary_key=True)
+    films = models.ManyToManyField(BillboardFilm, blank=True)
+
+    def __str__(self):
+        return f"Week {self.week}"
 
 
 class Review(models.Model):
     film = models.ForeignKey(Film, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    subject = models.CharField(max_length=200)
     rating = models.DecimalField(max_digits=3, decimal_places=1)
     comment = models.TextField()
+
+    def __str__(self):
+        return self.subject

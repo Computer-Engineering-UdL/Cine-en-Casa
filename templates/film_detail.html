@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head> <!-- Required meta tags (the head element won't render) -->
     <meta charset="UTF-8"> <!-- codification (do avoid problems with special characters) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsive design -->
 
     <title>Film Detail</title>
+    <style>
+        /* Estilo para las imágenes */
+        img {
+            width: 400px; /* Cambia el tamaño según tus preferencias */
+            height: auto; /* Para mantener la proporción de aspecto */
+        }
+    </style>
 
     <!-- OPEN GRAPH -->
     <meta property="og:title" content="Film Review Site"> <!-- the title that will appear in the social media -->
@@ -16,7 +23,15 @@
 <body>
     <h1>{{ film.title }}</h1>
     <p>Release Year: {{ film.release_year }}</p>
-    <p>Genres: {{ film.genres }}</p>
+    <p>Duration: {{ film.duration }}</p>
+    <p>Country: {{ film.country }}</p>
+    <p>Genres:</p>
+    <ul>
+        {% for genre in genres %}
+            <li>{{ genre }}</li>
+        {% endfor %}
+    </ul>
+    <p><a href="{% url 'film_detail' film.title %}"><img src="{{ film.poster.url }}" alt="{{ film.title }}"></a></p>
     <p>Synopsis: {{ film.synopsis }}</p>
     <p><a href="{% url 'home' %}">Back to Home</a></p>
 </body>
