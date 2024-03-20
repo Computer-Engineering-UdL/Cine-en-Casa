@@ -6,8 +6,8 @@ from CineEnCasa.models import Billboard, BillboardFilm
 # Register your models here.
 
 class FilmAdmin(admin.ModelAdmin):
-    list_display = ('title', 'country', 'release_year', 'duration')
-    search_fields = ('title', 'country', 'release_year', 'duration')
+    list_display = ('title', 'country', 'release_year', 'duration', 'platform', 'saga')
+    search_fields = ('title', 'country', 'release_year', 'duration', 'platform', 'saga')
 
 
 admin.site.register(Film, FilmAdmin)

@@ -23,4 +23,5 @@ def home(request):
 
 def film_detail(request, title):
     film = get_object_or_404(Film, title=title)
-    return render(request, 'film_detail.html', {'film': film})
+    genres = film.genre.all()
+    return render(request, 'film_detail.html', {'film': film, 'genres': genres})

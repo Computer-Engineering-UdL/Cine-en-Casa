@@ -102,7 +102,7 @@ class Billboard(models.Model):
     films = models.ManyToManyField(BillboardFilm, blank=True)
 
     def __str__(self):
-        return self.week
+        return f"Week {self.week}"
 
 
 class Review(models.Model):
