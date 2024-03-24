@@ -6,10 +6,9 @@
 
     <title>Home Page</title>
     <style>
-        /* Estilo para las imágenes */
         img {
-            width: 200px; /* Cambia el tamaño según tus preferencias */
-            height: auto; /* Para mantener la proporción de aspecto */
+            width: 200px;
+            height: auto;
         }
     </style>
 
@@ -21,13 +20,15 @@
     <meta name="description" content="Film Review Site"> <!-- the Google description in almost all cases -->
 </head>
 <body>
-    <h1>Welcome to Cine En Casa!</h1>
-    <p><a href="{% url 'add_film' %}">Add a new Film</a></p>
-    {% for film in films %}
-        <h2><a href="{% url 'film_detail' film.title %}">{{ film.title }}</a></h2>
-        <p><a href="{% url 'film_detail' film.title %}"><img src="{{ film.poster.url }}" alt="Poster de {{ film.title }}"></a></p>
-    {% empty %}
-        <p>No existent films.</p>
-    {% endfor %}
+<h1>Welcome to Cine En Casa!</h1>
+<p><a href="{% url 'create_billboard' %}">Create a new Billboard</a></p>
+<p><a href="{% url 'add_film' %}">Add a new Film</a></p>
+{% for film in films %}
+    <h2><a href="{% url 'film_detail' film.title %}">{{ film.title }}</a></h2>
+    <p><a href="{% url 'film_detail' film.title %}"><img src="{{ film.poster.url }}"
+                                                         alt="Poster de {{ film.title }}"></a></p>
+{% empty %}
+    <p>No existent films.</p>
+{% endfor %}
 </body>
 </html>
