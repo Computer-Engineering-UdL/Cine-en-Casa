@@ -1,34 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head> <!-- Required meta tags (the head element won't render) -->
-    <meta charset="UTF-8"> <!-- codification (do avoid problems with special characters) -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsive design -->
+{% extends "base.html" %}
+{% load static %}
 
-    <title>Home Page</title>
-    <style>
-        img {
-            width: 200px;
-            height: auto;
-        }
-    </style>
+{% block title %}
+    Cine en Casa
+{% endblock title %}
 
-    <!-- OPEN GRAPH -->
-    <meta property="og:title" content="Film Review Site"> <!-- the title that will appear in the social media -->
-    <meta property="og:type" content="website"> <!-- the type of the content -->
+{% block content %}
+    <h1>Welcome to Cine En Casa!</h1>
+    
+    <button type="button" onclick="location.href='{% url 'create_billboard' %}'"><img width="20" src="{% static 'img/icons/plus-sign.png' %}" alt="Create Billboard"></button>
+    <button type="button" onclick="location.href='{% url 'add_film' %}'">Add Film</button>
+    
+    {% for film in films %}
+        <h2><a href="{% url 'film_detail' film.title %}">{{ film.title }}</a></h2>
+        <p><a href="{% url 'film_detail' film.title %}"><img src="{{ film.poster.url }}"
+                                                             alt="Poster de {{ film.title }}"></a></p>
+    {% empty %}
+        <p>No existent films.</p>
+    {% endfor %}
+{% endblock content %}
 
-    <meta name="robots" content="index, follow"> <!-- search engine optimization -->
-    <meta name="description" content="Film Review Site"> <!-- the Google description in almost all cases -->
-</head>
-<body>
-<h1>Welcome to Cine En Casa!</h1>
-<p><a href="{% url 'create_billboard' %}">Create a new Billboard</a></p>
-<p><a href="{% url 'add_film' %}">Add a new Film</a></p>
-{% for film in films %}
-    <h2><a href="{% url 'film_detail' film.title %}">{{ film.title }}</a></h2>
-    <p><a href="{% url 'film_detail' film.title %}"><img src="{{ film.poster.url }}"
-                                                         alt="Poster de {{ film.title }}"></a></p>
-{% empty %}
-    <p>No existent films.</p>
-{% endfor %}
-</body>
-</html>
+{% block footer %}
+    toma footer
+{% endblock footer %}

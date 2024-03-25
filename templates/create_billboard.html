@@ -1,25 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head> <!-- Required meta tags (the head element won't render) -->
-    <meta charset="UTF-8"> <!-- codification (do avoid problems with special characters) -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsive design -->
+{% extends "base.html" %}
 
-    <title>Create Billboard</title>
+{% block title %}
+    Create New Billboard
+{% endblock title %}
 
-    <!-- OPEN GRAPH -->
-    <meta property="og:title" content="Film Review Site"> <!-- the title that will appear in the social media -->
-    <meta property="og:type" content="website"> <!-- the type of the content -->
-
-    <meta name="robots" content="index, follow"> <!-- search engine optimization -->
-    <meta name="description" content="Film Review Site"> <!-- the Google description in almost all cases -->
-</head>
-<body>
+{% block content %}
     <h1>New Billboard</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Create</button>
-    </form>
-    <p><a href="{% url 'home' %}">Back to Home</a></p>
-</body>
-</html>
+
+    <ol>
+        <li>
+            <div class="film">
+                <h2>{{ film.title }}</h2>
+                <div class="date&info">
+                    <div class="billboard-date">
+                        <label>Date:<input type="date"></label>
+                        <label>Time:<input type="time"></label>
+                    </div>
+                    <div class="brief-info">
+                        <p>{{ film.duration }}</p>
+                        <div>
+                            <p>{{ film.release_year }}</p>
+                            <img width="10" src="{{ film.country.flag }}" alt="{{ film.country }}">
+                        </div>
+                        <p>{{ film.type }}</p>
+                    </div>
+                </div>
+                <img src="{{ film.poster.url }}" alt="Poster de {{ film.title }}">
+            </div>
+        </li>
+    </ol>
+{% endblock content %}
