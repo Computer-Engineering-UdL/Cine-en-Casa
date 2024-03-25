@@ -7,13 +7,14 @@
 
 {% block content %}
     <h1>Welcome to Cine En Casa!</h1>
-    
-    <button type="button" onclick="location.href='{% url 'create_billboard' %}'"><img width="20" src="{% static 'img/icons/plus-sign.png' %}" alt="Create Billboard"></button>
+
+    <button type="button" onclick="location.href='{% url 'create_billboard' %}'">
+        <img width="20" src="{% static 'img/icons/plus-sign.png' %}" alt="Create Billboard"></button>
     <button type="button" onclick="location.href='{% url 'add_film' %}'">Add Film</button>
-    
+
     {% for film in films %}
         <h2><a href="{% url 'film_detail' film.title %}">{{ film.title }}</a></h2>
-        <p><a href="{% url 'film_detail' film.title %}"><img src="{{ film.poster.url }}"
+        <p><a href="{% url 'film_detail' film.title %}"><img width="200" src="{{ film.poster.url }}"
                                                              alt="Poster de {{ film.title }}"></a></p>
     {% empty %}
         <p>No existent films.</p>
