@@ -4,18 +4,30 @@
     {{ film.title }}
 {% endblock title %}
 
-<body>
+{% block content %}
     <h1>{{ film.title }}</h1>
-    <p>Release Year: {{ film.release_year }}</p>
-    <p>Duration: {{ film.duration }}</p>
-    <p>Country: {{ film.country }}</p>
-    <p>Genres:</p>
-    <ul>
-        {% for genre in genres %}
-            <li>{{ genre }}</li>
+    <strong>Release Year:</strong> {{ film.release_year }}<p></p>
+    <strong>Duration:</strong> {{ film.duration }}<p></p>
+    <strong>Country:</strong> <img width="25" src="{{ film.country.flag.url }}" alt="{{ film.country }}"> <p></p>
+    <strong>Genres:</strong>
+        {% for genre in film.genre.all %}
+            {{ genre.name }}{% if not forloop.last %},{% endif %}
         {% endfor %}
-    </ul>
-    <p><a href="{% url 'film_detail' film.title %}"><img src="{{ film.poster.url }}" alt="{{ film.title }}"></a></p>
-    <p>Synopsis: {{ film.synopsis }}</p>
+    <p></p>
+    <strong>Film Type:</strong>
+        {% for type in film.type.all %}
+            {{ type.name }}{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    <p></p>
+    <strong>Platform:</strong> {{ film.platform }}<p></p>
+    <strong>Language Version:</strong>
+        {% for version in film.language_version.all %}
+            {{ version.name }}{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    <p></p>
+    <strong>Saga:</strong> {{ film.saga }}<p></p>
+    <p><a href="{% url 'film_detail' film.title %}">
+        <img width="400" src="{{ film.poster.url }}" alt="{{ film.title }}"></a></p>
+    <strong>Synopsis:</strong><br> {{ film.synopsis }}
     <p><a href="{% url 'home' %}">Back to Home</a></p>
-</body>
+{% endblock %}
