@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Create New Billboard
+{% endblock title %}
+
+{% block content %}
+    <h1>Films List</h1>
+    
+    <button type="button" onclick="location.href='{% url 'create_billboard' %}'">Back to Create Billboard</button>
+    
+    <form method="GET">
+        <label>
+            <input type="text" name="search" placeholder="Search by Film Title">
+        </label>
+        <button type="submit">Search</button>
+    </form>
+
+    <form method="GET">
+        <label for="order_by">Sort by:</label>
+        <select name="order_by" id="order_by">
+            <option value="title">Title</option>
+            <option value="duration">Duration</option>
+            <option value="platform">Platform</option>
+            <option value="release_year">Release Year</option>
+            <option value="country">Country</option>
+            <option value="type">Film Type</option>
+            <option value="genre">Genre</option>
+        </select>
+        <button type="submit">Apply</button>
+    </form>
+
+    <ul>
+        {% for film in films %}
+            <!-- film: modified_date -->
+            <li>
+                {{ film.title }} - {{ film.duration }} - {{ film.platform }} - {{ film.release_year }} -
+                {{ film.country }} -
+                {% for genre in film.genre.all %}
+                    {{ genre.name }}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}
