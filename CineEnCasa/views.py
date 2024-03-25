@@ -32,7 +32,7 @@ def create_billboard(request):
         form = BillboardForm(request.POST)
         if form.is_valid():
             billboard = form.save()
-            return redirect('home')
+            return redirect('create_billboard')
     else:
         form = BillboardForm()
     return render(request, 'create_billboard.html', {'form': form})
