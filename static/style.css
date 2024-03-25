@@ -1,0 +1,15 @@
+/*.dateAndInfo{
+    background-color: navajowhite;
+}*/
+
+.billboard-date {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #da923c;
+    border: 1px solid #333;
+}
+
+.brief-info {
+    font-size: 1.2em;
+    color: #b770d3;
+}

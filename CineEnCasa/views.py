@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from CineEnCasa.forms import FilmForm, BillboardForm, BillboardFilmForm
 from django.contrib import messages
-from CineEnCasa.models import Film
-from .models import Billboard
+from CineEnCasa.models import Film, BillboardFilm, Billboard
 
 
 # Create your views here.
@@ -33,12 +32,13 @@ def create_billboard(request):
         form = BillboardFilmForm(request.POST)
         if form.is_valid():
             billboardFilm = form.save()
-            films = Billboard.objects.all()
-            messages.success(request, 'ole tus cojones')
-            return render(request, 'create_billboard.html', {'films': films})
+            billboard = Billboard.objects.create()
+            billboard.films.add(billboardFilm)
+            billboard.save()
+            films = BillboardFilm.objects.all()
+            return render(request, 'create_billboard.html', {'billboard': billboard})
     else:
         form = BillboardFilmForm()
-        messages.error(request, 'mongolo')
     return render(request, 'create_billboard.html', {'form': form})
 
 
