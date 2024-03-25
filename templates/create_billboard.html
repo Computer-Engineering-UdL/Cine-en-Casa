@@ -7,26 +7,48 @@
 {% block content %}
     <h1>New Billboard</h1>
 
+    <h2>Add film to billboard</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add</button>
+    </form>
+
+    <button type="button" onclick="location.href='{% url 'list_films' %}'">Add Registered Film</button>
+
     <ol>
-        <li>
-            <div class="film">
-                <h2>{{ film.title }}</h2>
-                <div class="date&info">
-                    <div class="billboard-date">
-                        <label>Date:<input type="date"></label>
-                        <label>Time:<input type="time"></label>
-                    </div>
-                    <div class="brief-info">
-                        <p>{{ film.duration }}</p>
-                        <div>
-                            <p>{{ film.release_year }}</p>
-                            <img width="10" src="{{ film.country.flag }}" alt="{{ film.country }}">
+        {% for film in films %}
+            <li>
+                <div class="film">
+                    <img src="{{ film.poster.url }}" alt="Poster de {{ film.title }}">
+                    <div class="date&info">
+                        <div class="billboard-date">
+                            <label>Date:<input type="date"></label>
+                            <label>Time:<input type="time"></label>
                         </div>
-                        <p>{{ film.type }}</p>
+                        <div class="brief-info">
+                            <p>{{ film.duration }}</p>
+                            <p>{{ film.platform }}</p>
+                            <div>
+                                <p>{{ film.release_year }}</p>
+                                <img width="10" src="{{ film.country.flag }}" alt="{{ film.country }}">
+                            </div>
+                            <p>{{ film.type }}</p>
+                        </div>
+                    </div>
+                    <div class="film-details">
+                        <h2>{{ film.title }}</h2>
+                        <p>{{ film.synopsis }}</p>
+                        <div>
+                            <p>{{ film.saga.name }}</p>
+                            <p>{{ film.current_saga_film }}</p>
+                            <p>{{ film.saga.total_films }}</p>
+                        </div>
+                        <ul>{{ film.genre }}</ul>
+                        <ul>{{ film.language_version }}</ul>
                     </div>
                 </div>
-                <img src="{{ film.poster.url }}" alt="Poster de {{ film.title }}">
-            </div>
-        </li>
+            </li>
+        {% endfor %}
     </ol>
 {% endblock content %}
