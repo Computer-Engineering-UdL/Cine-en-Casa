@@ -26,7 +26,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('films/add/', add_film, name='add_film'),
     path('billboard/create/', create_new_billboard, name='create_new_billboard'),
-    path('billboard/create/<int:week>', create_current_billboard, name='create_current_billboard'),
+    path('billboard/create/<int:pk>', create_current_billboard, name='create_current_billboard'),
     path('films/list/', list_films, name='list_films'),
     path('films/<str:title>/', film_detail, name='film_detail'),
 ]

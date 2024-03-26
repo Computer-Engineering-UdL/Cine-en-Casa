@@ -32,24 +32,27 @@ def film_detail(request, title):
     return render(request, 'film_detail.html', {'film': film})
 
 
-def create_new_billboard(request):
-    billboard = Billboard.objects.create()
 
+
+
+def create_new_billboard(request):
     if request.method == 'POST':
         form = BillboardFilmForm(request.POST)
         if form.is_valid():
             billboardFilm = form.save()
+            billboard = Billboard()
+            billboard.save()
             billboard.films.add(billboardFilm)
             billboard.save()
-            HttpResponseRedirect(reverse("create_current_billboard", args=(billboard,)))
-            #return redirect('create_current_billboard', billboard.week)
+            #return HttpResponseRedirect(reverse("create_current_billboard", args=(billboard.week,)))
+            return redirect('create_current_billboard', pk=billboard.pk)
             #return render(request, 'create_current_billboard.html', {'billboard': billboard})
     else:
         form = BillboardFilmForm()
     return render(request, 'create_new_billboard.html', {'form': form})
 
-def create_current_billboard(request):
-    billboard = get_object_or_404(Billboard)
+def create_current_billboard(request, pk):
+    billboard = get_object_or_404(Billboard, pk=pk)
 
     if request.method == 'POST':
         form = BillboardFilmForm(request.POST)
@@ -58,10 +61,15 @@ def create_current_billboard(request):
             billboard.films.add(billboardFilm)
             billboard.save()
             films = BillboardFilm.objects.all()
-            return render(request, 'create_current_billboard.html', {'billboard': billboard})
+            print(billboard.pk)
+            #return redirect('create_current_billboard', pk=billboard.pk, billboard=billboard)
+            return render(request, 'create_current_billboard.html', {'form': form, 'billboard': billboard})
     else:
         form = BillboardFilmForm()
-    return render(request, 'create_current_billboard.html', {'form': form})
+    return render(request, 'create_current_billboard.html', {'form': form, 'billboard': billboard})
+
+
+
 
 
 def list_films(request):
