@@ -7,7 +7,7 @@
 {% block content %}
     <h1>Films List</h1>
     
-    <button type="button" onclick="location.href='{% url 'create_billboard' %}'">Back to Create Billboard</button>
+    <button type="button" onclick="location.href='{% url 'create_new_billboard' billboard.week %}'">Back to Create Billboard</button>
     
     <form method="GET">
         <label>

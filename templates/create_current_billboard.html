@@ -46,8 +46,16 @@
                             <p>{{ film.film.saga.name }}</p>
                             <p>{{ film.film.current_saga_film }}/{{ film.film.saga.total_films }}</p>
                         </div>
-                        <ul>{{ film.film.genre }}</ul>
-                        <ul>{{ film.film.language_version }}</ul>
+                        <div>
+                            <p>{% for genre in film.film.genre.all %}
+                            {{ genre.name }}{% if not forloop.last %},{% endif %}
+                        {% endfor %}</p>
+                        </div>
+                        <div>
+                            <p>{% for version in film.film.language_version.all %}
+                            {{ version.name }}{% if not forloop.last %},{% endif %}
+                        {% endfor %}</p>
+                        </div>
                     </div>
                 </div>
             </li>

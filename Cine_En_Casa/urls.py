@@ -17,7 +17,7 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path
-from CineEnCasa.views import home, add_film, film_detail, create_billboard, list_films
+from CineEnCasa.views import home, add_film, film_detail, create_new_billboard, create_current_billboard, list_films
 from django.conf.urls.static import static
 from CineEnCasa import views
 
@@ -25,7 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('films/add/', add_film, name='add_film'),
-    path('billboard/create/', views.create_billboard, name='create_billboard'),
+    path('billboard/create/', create_new_billboard, name='create_new_billboard'),
+    path('billboard/create/<int:week>', create_current_billboard, name='create_current_billboard'),
     path('films/list/', list_films, name='list_films'),
     path('films/<str:title>/', film_detail, name='film_detail'),
 ]

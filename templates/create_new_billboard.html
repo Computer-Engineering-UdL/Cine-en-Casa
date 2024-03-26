@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+
+{% block title %}
+    Create New Billboard
+{% endblock title %}
+
+{% block content %}
+    <h1>New Billboard</h1>
+
+    <h3>Add film to billboard</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add</button>
+    </form>
+
+    <!-- <button type="button" onclick="location.href='{% url 'list_films' %}'">Add Registered Film</button> -->
+
+{% endblock content %}
