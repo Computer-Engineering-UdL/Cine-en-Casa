@@ -60,13 +60,11 @@ def create_current_billboard(request, pk):
             billboardFilm = form.save()
             billboard.films.add(billboardFilm)
             billboard.save()
-            films = BillboardFilm.objects.all()
-            print(billboard.pk)
-            #return redirect('create_current_billboard', pk=billboard.pk, billboard=billboard)
-            return render(request, 'create_current_billboard.html', {'form': form, 'billboard': billboard})
+            films = billboard.films.all().order_by('datetime')
+            return render(request, 'create_current_billboard.html', {'form': form, 'films': films})
     else:
         form = BillboardFilmForm()
-    return render(request, 'create_current_billboard.html', {'form': form, 'billboard': billboard})
+    return render(request, 'create_current_billboard.html', {'form': form, 'films': billboard.films.all().order_by('datetime')})
 
 
 
