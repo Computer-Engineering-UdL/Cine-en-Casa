@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <!-- Required meta tags (the head element won't render) -->
+    {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+    
+    <meta charset="UTF-8"> <!-- codification (do avoid problems with special characters) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsive design -->
+
+    <title>
+    {% block title %}
+        Base
+    {% endblock title %}
+    </title>
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="Base"> <!-- the title that will appear in the social media -->
+    <meta property="og:type" content="website"> <!-- the type of the content -->
+
+    <meta name="robots" content="index, follow"> <!-- search engine optimization -->
+    <meta name="keywords" content="Film, Films, Billboard, Management, Admin, Panel">
+    <meta name="description" content="Base"> <!-- the Google description in almost all cases -->
+
+    {% block extra-tags %}
+    {% endblock extra-tags %}
+</head>
+<body>
+    <header>
+    {% block header %}
+        menu
+    {% endblock header %}
+    </header>
+
+    <main>
+        {% block content %}
+            content
+        {% endblock content %}
+    </main>
+
+    <footer>
+        {% block footer %}
+        {% endblock footer %}
+    </footer>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block extra-tags %}
+    {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/create_billboard.css' %}" />
+{% endblock extra-tags %}
+
+{% block title %}
+    Create New Billboard
+{% endblock title %}
+
+{% block content %}
+    <h1>New Billboard</h1>
+
+    <h3>Add film to billboard</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="add-button" type="submit">Add</button>
+    </form>
+
+    <ul>
+        {% for film in films %}
+            <li class="film">
+                <img class="poster" width="50" src="{{ film.film.poster.url }}" alt="Poster de {{ film.film.title }}">
+                <div class="dateAndInfo">
+                    <div class="billboard-date">
+                        <p class="number-day">{{ film.datetime|date:"d" }}</p>
+                        <p class="day">{{ film.datetime|date:"D" }}</p>
+                        <p class="month">{{ film.datetime|date:"M" }}</p>
+                        <p>{{ film.datetime|time:"H:i" }}</p>
+                    </div>
+                    <div class="brief-info">
+                        <p>{{ film.film.duration }}</p>
+                        <p>{{ film.film.platform }}</p>
+                        <div>
+                            <p>{{ film.film.release_year }}</p>
+                            <img width="10" src="{{ film.film.country.flag }}" alt="{{ film.film.country }}">
+                        </div>
+                        {% if film.film.type %}
+                            <p>{{ film.film.type.name }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="film-details">
+                    <h2>{{ film.film.title }}</h2>
+                    <p>{{ film.film.synopsis }}</p>
+                    <div>
+                        <p>{{ film.film.saga.name }}</p>
+                        <p>{{ film.film.current_saga_film }}/{{ film.film.saga.total_films }}</p>
+                    </div>
+                    <div>
+                        <p>{% for genre in film.film.genre.all %}
+                        {{ genre.name }}{% if not forloop.last %},{% endif %}
+                    {% endfor %}</p>
+                    </div>
+                    <div>
+                        <p>{% for version in film.film.language_version.all %}
+                        {{ version.name }}{% if not forloop.last %},{% endif %}
+                    {% endfor %}</p>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

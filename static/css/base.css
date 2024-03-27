@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('');
+}
+body{
+    background-color: #f1e9e0;
+    font-family: 'Open Sans','Ubuntu', 'Lato', 'Lora', 'Goudy Old Style', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+h1{
+    font-size: 2em;
+    font-weight: bold;
+    color: #000;
+}
