@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
-{% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/create_billboard.css' %}" />
+{% block extra-tags %}
+    {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/create_billboard.css' %}" />
+{% endblock extra-tags %}
 
 {% block title %}
     Create New Billboard
