@@ -1,12 +1,55 @@
+/* CSS for the create_new_billboard.html and create_current_billboard.html template */
+/* Path: static/css/create_current_billboard.css */
+
 .add-button {
-    background-color: #4CAF50;
+    background-color: #005555;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 26px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    border-radius: 8px;
+}
+.add-button:hover {
+    background-color: #7ba056
+}
+
+
+
+
+.film{
+    border: 1px solid #000;
+    border-radius: 8px;
+    display: flex;
+}
+.poster{ /* poster's height and width must always be the same */
+    width: 200px;
+    height: 300px;
+    border-radius: 8px;
+}
+.dateAndInfo{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+.billboard-date{
+    display: flex;
+    margin-bottom: 10px;
+    align-items: flex-start;
+}
+.billboard-date p{
+    margin-right: 10px;
+}
+.number-day{
+    font-size: 3.5em;
+    line-height: 1;
+    font-weight: bold;
+    color: #000;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
 }

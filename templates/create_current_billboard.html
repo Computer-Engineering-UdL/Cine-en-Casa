@@ -23,41 +23,41 @@
 
     <ul>
         {% for film in billboard.films.all %}
-            <li>
-                <div class="film">
-                    <img width="50" src="{{ film.film.poster.url }}" alt="Poster de {{ film.film.title }}">
-                    <div class="dateAndInfo">
-                        <!-- <div class="billboard-date">
-                            <label>Date:<input type="date"></label>
-                            <label>Time:<input type="time"></label>
-                        </div> -->
-                        <div class="brief-info">
-                            <p>{{ film.film.duration }}</p>
-                            <p>{{ film.film.platform }}</p>
-                            <div>
-                                <p>{{ film.film.release_year }}</p>
-                                <img width="10" src="{{ film.film.country.flag }}" alt="{{ film.film.country }}">
-                            </div>
-                            <p>{{ film.film.type }}</p>
-                        </div>
+            <li class="film">
+                <img class="poster" width="50" src="{{ film.film.poster.url }}" alt="Poster de {{ film.film.title }}">
+                <div class="dateAndInfo">
+                    <div class="billboard-date">
+                        <p class="number-day">{{ film.datetime|date:"d" }}</p>
+                        <p class="day">{{ film.datetime|date:"D" }}</p>
+                        <p class="month">{{ film.datetime|date:"M" }}</p>
+                        <p>{{ film.datetime|time:"H:i" }}</p>
                     </div>
-                    <div class="film-details">
-                        <h2>{{ film.film.title }}</h2>
-                        <p>{{ film.film.synopsis }}</p>
+                    <div class="brief-info">
+                        <p>{{ film.film.duration }}</p>
+                        <p>{{ film.film.platform }}</p>
                         <div>
-                            <p>{{ film.film.saga.name }}</p>
-                            <p>{{ film.film.current_saga_film }}/{{ film.film.saga.total_films }}</p>
+                            <p>{{ film.film.release_year }}</p>
+                            <img width="10" src="{{ film.film.country.flag }}" alt="{{ film.film.country }}">
                         </div>
-                        <div>
-                            <p>{% for genre in film.film.genre.all %}
-                            {{ genre.name }}{% if not forloop.last %},{% endif %}
-                        {% endfor %}</p>
-                        </div>
-                        <div>
-                            <p>{% for version in film.film.language_version.all %}
-                            {{ version.name }}{% if not forloop.last %},{% endif %}
-                        {% endfor %}</p>
-                        </div>
+                        <p>{{ film.film.type }}</p>
+                    </div>
+                </div>
+                <div class="film-details">
+                    <h2>{{ film.film.title }}</h2>
+                    <p>{{ film.film.synopsis }}</p>
+                    <div>
+                        <p>{{ film.film.saga.name }}</p>
+                        <p>{{ film.film.current_saga_film }}/{{ film.film.saga.total_films }}</p>
+                    </div>
+                    <div>
+                        <p>{% for genre in film.film.genre.all %}
+                        {{ genre.name }}{% if not forloop.last %},{% endif %}
+                    {% endfor %}</p>
+                    </div>
+                    <div>
+                        <p>{% for version in film.film.language_version.all %}
+                        {{ version.name }}{% if not forloop.last %},{% endif %}
+                    {% endfor %}</p>
                     </div>
                 </div>
             </li>
