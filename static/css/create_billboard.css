@@ -32,24 +32,79 @@
     border-radius: 8px;
 }
 .dateAndInfo{
+    margin: 15px;
     width: 200px;
+    line-height: 0;
     display: flex;
     flex-direction: column;
 }
 .billboard-date{
-    display: flex;
-    margin-bottom: 10px;
+    line-height: 0;
     align-items: flex-start;
+    justify-content: center;
 }
-.billboard-date p{
-    margin-right: 10px;
+.billboard-day{
+    display: flex;
+    line-height: 0;
 }
 .number-day{
+    align-self: self-start;
+    margin: 30px 5px 30px 0;
     font-size: 3.5em;
-    line-height: 1;
     font-weight: bold;
     color: #000;
-    margin-right: 10px;
-    margin-left: 10px;
+}
+.date{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.3em;
+    align-self: self-start;
+    margin: 22px 0 30px;
+    justify-content: center;
+    align-items: center;
+}
+.month-time{
+    align-items: self-start;
+    justify-content: center;
+    margin-left: 5px;
+}
+.month{
+    margin: 10px 0;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.time{
+    margin-top: 30px;
+}
+
+.brief-info{
+    line-height: 0;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 5px;
+}
+.duration{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.platform{
     margin-top: 10px;
+    margin-bottom: 20px;
+}
+.year-country{
+    display: flex;
+    line-height: 0;
+}
+.year{
+    margin-right: 20px;
+}
+.country{
+    align-self: center;
+    border-radius: 5px;
+    width: 24px;
+    height: 16px;
+}
+.type{
+    margin-top: 50px;
+    font-size: 1.5em;
 }
