@@ -1,0 +1,12 @@
+body{
+    background-color: #e8cb98;
+    font-family: 'Ubuntu', 'Lato', 'Lora', 'Goudy Old Style', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+h1{
+    font-size: 2em;
+    font-weight: bold;
+    color: #000;
+}

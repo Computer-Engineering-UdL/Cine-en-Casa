@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
-{% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+{% block extra-tags %}
+    {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/create_billboard.css' %}" />
+{% endblock extra-tags %}
 
 {% block title %}
     Create New Billboard
@@ -14,9 +16,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Add</button>
+        <button class="add-button" type="submit">Add</button>
     </form>
-
-    <!-- <button type="button" onclick="location.href='{% url 'list_films' %}'">Add Registered Film</button> -->
 
 {% endblock content %}

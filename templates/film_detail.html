@@ -4,6 +4,9 @@
     {{ film.title }}
 {% endblock title %}
 
+{% load static %}
+    link rel="stylesheet" type="text/css" href="{% static 'css/film_detail.css' %}"
+
 {% block content %}
     <div class="film-details">
         <h1>{{ film.title }}</h1>

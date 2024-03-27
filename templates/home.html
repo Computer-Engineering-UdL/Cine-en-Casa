@@ -1,5 +1,9 @@
 {% extends "base.html" %}
-{% load static %}
+
+{% block extra-tags %}
+    {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+{% endblock extra-tags %}
 
 {% block title %}
     Cine en Casa

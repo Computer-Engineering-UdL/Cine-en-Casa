@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block extra-tags %}
+    {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/add_film.css' %}" />
+{% endblock extra-tags %}
+
 {% block content %}
     <h1>New Film</h1>
     <form method="post">
