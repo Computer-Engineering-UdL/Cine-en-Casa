@@ -25,20 +25,24 @@
                 <img class="poster" width="50" src="{{ film.film.poster.url }}" alt="Poster de {{ film.film.title }}">
                 <div class="dateAndInfo">
                     <div class="billboard-date">
-                        <p class="number-day">{{ film.datetime|date:"d" }}</p>
-                        <p class="day">{{ film.datetime|date:"D" }}</p>
-                        <p class="month">{{ film.datetime|date:"M" }}</p>
-                        <p>{{ film.datetime|time:"H:i" }}</p>
+                        <div class="billboard-day">
+                            <p class="number-day">{{ film.datetime|date:"d" }}</p>
+                            <p class="date">{{ film.datetime|date:"D" }}</p>
+                        </div>
+                        <div class="month-time">
+                            <p class="month">{{ film.datetime|date:"M" }}</p>
+                            <p class="time">{{ film.datetime|time:"H:i" }} h</p>
+                        </div>
                     </div>
                     <div class="brief-info">
-                        <p>{{ film.film.duration }}</p>
-                        <p>{{ film.film.platform }}</p>
-                        <div>
-                            <p>{{ film.film.release_year }}</p>
-                            <img width="10" src="{{ film.film.country.flag }}" alt="{{ film.film.country }}">
+                        <p class="duration">{{ film.film.duration }}</p>
+                        <p class="platform">{{ film.film.platform }}</p>
+                        <div class="year-country">
+                            <p class="year">{{ film.film.release_year }}</p>
+                            <img class="country" src="{{ film.film.country.flag.url }}" alt="{{ film.film.country }}">
                         </div>
                         {% if film.film.type %}
-                            <p>{{ film.film.type.name }}</p>
+                            <p class="type">{{ film.film.type.name }}</p>
                         {% endif %}
                     </div>
                 </div>
@@ -46,8 +50,10 @@
                     <h2>{{ film.film.title }}</h2>
                     <p>{{ film.film.synopsis }}</p>
                     <div>
-                        <p>{{ film.film.saga.name }}</p>
-                        <p>{{ film.film.current_saga_film }}/{{ film.film.saga.total_films }}</p>
+                        {% if film.film.saga %}
+                            <p>{{ film.film.saga.name }}</p>
+                            <p>{{ film.film.current_saga_film }}/{{ film.film.saga.total_films }}</p>
+                        {% endif %}
                     </div>
                     <div>
                         <p>{% for genre in film.film.genre.all %}
@@ -56,7 +62,7 @@
                     </div>
                     <div>
                         <p>{% for version in film.film.language_version.all %}
-                        {{ version.name }}{% if not forloop.last %},{% endif %}
+                            {{ version.name }}{% if not forloop.last %},{% endif %}
                     {% endfor %}</p>
                     </div>
                 </div>

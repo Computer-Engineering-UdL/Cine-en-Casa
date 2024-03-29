@@ -32,9 +32,6 @@ def film_detail(request, title):
     return render(request, 'film_detail.html', {'film': film})
 
 
-
-
-
 def create_new_billboard(request):
     if request.method == 'POST':
         form = BillboardFilmForm(request.POST)
@@ -51,6 +48,7 @@ def create_new_billboard(request):
         form = BillboardFilmForm()
     return render(request, 'create_new_billboard.html', {'form': form})
 
+
 def create_current_billboard(request, pk):
     billboard = get_object_or_404(Billboard, pk=pk)
 
@@ -65,20 +63,3 @@ def create_current_billboard(request, pk):
     else:
         form = BillboardFilmForm()
     return render(request, 'create_current_billboard.html', {'form': form, 'films': billboard.films.all().order_by('datetime')})
-
-
-
-
-
-def list_films(request):
-    films = Film.objects.all()
-
-    search_query = request.GET.get('search')
-    if search_query:
-        films = films.filter(title__icontains=search_query)
-
-    order_by = request.GET.get('order_by')
-    if order_by:
-        films = films.order_by(order_by)
-
-    return render(request, 'list_films.html', {'films': films})

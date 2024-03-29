@@ -1,0 +1,89 @@
+p, h1, h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    margin: auto auto auto;
+    width: 200px;
+}
+
+button {
+    display: block;
+    margin: 50px auto 70px;
+}
+
+.new-billboard-button {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 15px 25px;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.new-billboard-button:hover {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.new-billboard-button:active {
+    opacity: 0.4;
+}
+
+.add-film-button {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 15px 25px;
+    background-color: #4a08ac;
+    border: 1px solid #4a08ac;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.add-film-button:hover {
+    color: #4a08ac;
+    background-color: white;
+    border: 1px solid #4a08ac;
+}
+
+.add-film-button:active {
+    opacity: 0.4;
+}
+
+
+a {
+    font-size: 18px;
+    color: black;
+    text-decoration: none;
+    margin-bottom: 0;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    opacity: 0.5;
+}
+
+
+.film-poster {
+    margin-top: 10px;
+    width: 200px;
+    transition: opacity 0.2s;
+    margin-bottom: 50px;
+}
+
+.film-poster:hover {
+    opacity: 0.8;
+}
