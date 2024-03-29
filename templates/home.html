@@ -12,10 +12,12 @@
 {% block content %}
     <h1>Welcome to Cine En Casa!</h1>
 
-    <button class="new-billboard-button" type="button" onclick="location.href='{% url 'create_new_billboard' %}'">
-        Create Billboard
-    </button>
-    <button class="add-film-button" type="button" onclick="location.href='{% url 'add_film' %}'">Add Film</button>
+    <div id="creation-buttons">
+        <button class="new-billboard-button" type="button" onclick="location.href='{% url 'create_new_billboard' %}'">
+            Create Billboard
+        </button>
+        <button class="add-film-button" type="button" onclick="location.href='{% url 'add_film' %}'">Add Film</button>
+    </div>
 
     {% for film in films %}
         <h2><a href="{% url 'film_detail' film.title %}">

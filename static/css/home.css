@@ -3,7 +3,6 @@ p, h1, h2 {
     margin-top: 0;
     margin-bottom: 0;
 }
-
 h2 {
     display: flex;
     justify-content: center;
@@ -11,12 +10,18 @@ h2 {
     width: 200px;
 }
 
-button {
-    display: block;
-    margin: 50px auto 70px;
+
+#creation-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; /* Align the buttons to the left */
+    align-items: center; /* Center the buttons vertically */
+    width: auto;
+    height: 64px;
 }
 
 .new-billboard-button {
+    margin-right: 10px;
     color: white;
     font-size: 15px;
     font-weight: bold;
@@ -27,18 +32,18 @@ button {
     cursor: pointer;
     transition: opacity 0.2s;
 }
-
 .new-billboard-button:hover {
     color: black;
     background-color: white;
     border: 1px solid black;
 }
-
 .new-billboard-button:active {
     opacity: 0.4;
 }
 
 .add-film-button {
+    margin-top: 0;
+    margin-bottom: 0;
     color: white;
     font-size: 15px;
     font-weight: bold;
@@ -49,13 +54,11 @@ button {
     cursor: pointer;
     transition: opacity 0.2s;
 }
-
 .add-film-button:hover {
     color: #4a08ac;
     background-color: white;
     border: 1px solid #4a08ac;
 }
-
 .add-film-button:active {
     opacity: 0.4;
 }
