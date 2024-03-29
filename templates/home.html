@@ -19,16 +19,21 @@
         <button class="add-film-button" type="button" onclick="location.href='{% url 'add_film' %}'">Add Film</button>
     </div>
 
-    {% for film in films %}
-        <h2><a href="{% url 'film_detail' film.title %}">
-            {{ film.title }}
-        </a></h2>
-        <p><a href="{% url 'film_detail' film.title %}">
-            <img class="film-poster" src="{{ film.poster.url }}" alt="Poster de {{ film.title }}">
-        </a></p>
-    {% empty %}
-        <p>No existent films.</p>
-    {% endfor %}
+    <div class="films-section">
+        <h2>All Films</h2>
+        <div class="All Films">
+            {% for film in films %}
+                <h2><a href="{% url 'film_detail' film.title %}">
+                    {{ film.title }}
+                </a></h2>
+                <p><a href="{% url 'film_detail' film.title %}">
+                    <img class="film-poster" src="{{ film.poster.url }}" alt="Poster de {{ film.title }}">
+                </a></p>
+            {% empty %}
+                <p>No existent films.</p>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock content %}
 
 {% block footer %}
