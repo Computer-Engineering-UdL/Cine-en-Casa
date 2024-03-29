@@ -20,15 +20,17 @@
     </div>
 
     <div class="films-section">
-        <h2>All Films</h2>
-        <div class="All Films">
+        <h2 class="section-title">All Films</h2>
+        <div class="All-Films">
             {% for film in films %}
-                <h2><a href="{% url 'film_detail' film.title %}">
-                    {{ film.title }}
-                </a></h2>
-                <p><a href="{% url 'film_detail' film.title %}">
-                    <img class="film-poster" src="{{ film.poster.url }}" alt="Poster de {{ film.title }}">
-                </a></p>
+                <div class="film">
+                    <h2><a class="title-link" href="{% url 'film_detail' film.title %}">
+                        {{ film.title }}
+                    </a></h2>
+                    <a href="{% url 'film_detail' film.title %}">
+                        <img class="film-poster" src="{{ film.poster.url }}" alt="Poster de {{ film.title }}">
+                    </a>
+                </div>
             {% empty %}
                 <p>No existent films.</p>
             {% endfor %}
