@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('https://github.com/Computer-Engineering-UdL/Cine-en-Casa/blob/main/static/fonts/OpenSans-VariableFont_wdth%2Cwght.ttf');
+}
+body{
+    background-color: #f3f2f6;
+    font-family: 'Open Sans','Ubuntu', 'Lato', 'Lora', 'Goudy Old Style', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+h1{
+    font-size: 2em;
+    font-weight: bold;
+    color: #000;
+}

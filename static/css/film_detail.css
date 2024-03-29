@@ -1,0 +1,29 @@
+.film-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 20px;
+    align-items: center;
+}
+
+.poster img {
+    width: 400px; /* Ajusta el tamaño de la imagen según tus necesidades */
+}
+
+.details {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+    .poster img {
+        width: 100%; /* Para que la imagen ocupe todo el ancho en pantallas pequeñas */
+    }
+}

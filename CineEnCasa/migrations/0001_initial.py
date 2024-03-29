@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=30, unique=True)),
-                ('flag', models.ImageField(default='media/country-flags/default-flag.png', upload_to='media/country-flags')),
+                ('flag', models.ImageField(default='img/country-flags/default-flag.png', upload_to='img/country-flags')),
             ],
         ),
         migrations.CreateModel(
@@ -82,7 +82,7 @@ class Migration(migrations.Migration):
                 ('release_year', models.PositiveIntegerField()),
                 ('duration', models.DurationField()),
                 ('synopsis', models.TextField()),
-                ('poster', models.ImageField(default='media/film-posters/default-film.png', upload_to='media/film-posters')),
+                ('poster', models.ImageField(default='img/film-posters/default-film.png', upload_to='img/film-posters')),
                 ('country', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='CineEnCasa.country')),
                 ('type', models.ManyToManyField(to='CineEnCasa.filmtype')),
                 ('genre', models.ManyToManyField(to='CineEnCasa.genre')),

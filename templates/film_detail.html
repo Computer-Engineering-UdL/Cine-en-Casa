@@ -1,38 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head> <!-- Required meta tags (the head element won't render) -->
-    <meta charset="UTF-8"> <!-- codification (do avoid problems with special characters) -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsive design -->
+{% extends "base.html" %}
 
-    <title>Film Detail</title>
-    <style>
-        /* Estilo para las imágenes */
-        img {
-            width: 400px; /* Cambia el tamaño según tus preferencias */
-            height: auto; /* Para mantener la proporción de aspecto */
-        }
-    </style>
+{% block title %}
+    {{ film.title }}
+{% endblock title %}
 
-    <!-- OPEN GRAPH -->
-    <meta property="og:title" content="Film Review Site"> <!-- the title that will appear in the social media -->
-    <meta property="og:type" content="website"> <!-- the type of the content -->
+{% load static %}
+    link rel="stylesheet" type="text/css" href="{% static 'css/film_detail.css' %}"
 
-    <meta name="robots" content="index, follow"> <!-- search engine optimization -->
-    <meta name="description" content="Film Review Site"> <!-- the Google description in almost all cases -->
-</head>
-<body>
-    <h1>{{ film.title }}</h1>
-    <p>Release Year: {{ film.release_year }}</p>
-    <p>Duration: {{ film.duration }}</p>
-    <p>Country: {{ film.country }}</p>
-    <p>Genres:</p>
-    <ul>
-        {% for genre in genres %}
-            <li>{{ genre }}</li>
-        {% endfor %}
-    </ul>
-    <p><a href="{% url 'film_detail' film.title %}"><img src="{{ film.poster.url }}" alt="{{ film.title }}"></a></p>
-    <p>Synopsis: {{ film.synopsis }}</p>
+{% block content %}
+    <div class="film-details">
+        <h1>{{ film.title }}</h1>
+        <div class="details-grid">
+            <strong>Release Year:</strong> {{ film.release_year }}<p></p>
+            <strong>Duration:</strong> {{ film.duration }}<p></p>
+            <strong>Country:</strong> <img width="25" src="{{ film.country.flag.url }}" alt="{{ film.country }}"> <p></p>
+            <strong>Genres:</strong>
+                {% for genre in film.genre.all %}
+                    {{ genre.name }}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            <p></p>
+            <strong>Film Type:</strong>
+                {% for type in film.type.all %}
+                    {{ type.name }}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            <p></p>
+            <strong>Platform:</strong> {{ film.platform }}<p></p>
+            <strong>Language Version:</strong>
+                {% for version in film.language_version.all %}
+                    {{ version.name }}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            <p></p>
+            <strong>Saga:</strong> {{ film.saga }}<p></p>
+            <div class="poster">
+                <p><a href="{% url 'film_detail' film.title %}">
+                    <img width="400" src="{{ film.poster.url }}" alt="{{ film.title }}"></a></p>
+            </div>
+            <div class="resume">
+                <strong>Synopsis:</strong><br> {{ film.synopsis }}
+            </div>
+        </div>
+    </div>
+    
     <p><a href="{% url 'home' %}">Back to Home</a></p>
-</body>
-</html>
+{% endblock %}

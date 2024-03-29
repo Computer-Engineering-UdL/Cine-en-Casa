@@ -27,7 +27,7 @@ class Platform(models.Model):
 
 class Country(models.Model):
     name = models.CharField(max_length=30, unique=True)
-    flag = models.ImageField(upload_to="media/country-flags", default="media/country-flags/default-flag.png")
+    flag = models.ImageField(upload_to="static/img/country-flags", default="static/img/country-flags/default-flag.png")
 
     def __str__(self):
         return self.name
@@ -70,7 +70,7 @@ class Film(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     genre = models.ManyToManyField(Genre)
     synopsis = models.TextField()
-    poster = models.ImageField(upload_to="media/film-posters", default="media/film-posters/default-film.png")
+    poster = models.ImageField(upload_to="static/img/film-posters", default="static/img/film-posters/default-film.png")
 
     # Extra info
     type = models.ManyToManyField(FilmType)
