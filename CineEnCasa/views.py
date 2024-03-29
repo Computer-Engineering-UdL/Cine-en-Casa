@@ -63,17 +63,3 @@ def create_current_billboard(request, pk):
     else:
         form = BillboardFilmForm()
     return render(request, 'create_current_billboard.html', {'form': form, 'films': billboard.films.all().order_by('datetime')})
-
-
-def list_films(request):
-    films = Film.objects.all()
-
-    search_query = request.GET.get('search')
-    if search_query:
-        films = films.filter(title__icontains=search_query)
-
-    order_by = request.GET.get('order_by')
-    if order_by:
-        films = films.order_by(order_by)
-
-    return render(request, 'list_films.html', {'films': films})
