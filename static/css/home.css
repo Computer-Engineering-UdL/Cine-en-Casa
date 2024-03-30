@@ -5,16 +5,17 @@ p, h1, h2 {
 
 
 #creation-buttons {
+    margin-top: 25px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start; /* Align the buttons to the left */
+    justify-content: center; /* Align the buttons to the center */
     align-items: center; /* Center the buttons vertically */
     width: auto;
     height: 64px;
 }
 
 .new-billboard-button {
-    margin-right: 10px;
+    margin-right: 40px;
     color: white;
     font-size: 15px;
     font-weight: bold;
@@ -86,6 +87,10 @@ p, h1, h2 {
     border-radius: 8px;
     transition: opacity 0.2s;
 
+}
+
+.film-title {
+    width: 200px;
 }
 
 .title-link{

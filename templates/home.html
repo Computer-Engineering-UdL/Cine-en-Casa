@@ -24,7 +24,7 @@
         <div class="All-Films">
             {% for film in films %}
                 <div class="film">
-                    <h2><a class="title-link" href="{% url 'film_detail' film.title %}">
+                    <h2 class="film-title"><a class="title-link" href="{% url 'film_detail' film.title %}">
                         {{ film.title }}
                     </a></h2>
                     <a href="{% url 'film_detail' film.title %}">
